@@ -1,0 +1,107 @@
+nlp-lab
+pid: 1034756
+conda env: haystack-py310
+screen: 
+
+gpu: 0
+
+Namespace(ent_emb=['ddb'], dataset='medqa_usmle', inhouse=False, inhouse_train_qids='data/medqa_usmle/inhouse_split_qids.txt', train_statements='data/medqa_usmle/statement/train.statement.jsonl', dev_statements='data/medqa_usmle/statement/dev.statement.jsonl', test_statements='data/medqa_usmle/statement/test.statement.jsonl', max_seq_len=512, encoder='cambridgeltl/SapBERT-from-PubMedBERT-fulltext', encoder_layer=-1, encoder_lr=5e-05, loss='cross_entropy', optim='radam', lr_schedule='fixed', batch_size=128, warmup_steps=150, max_grad_norm=1.0, weight_decay=0.01, n_epochs=15, max_epochs_before_stop=10, log_interval=10, cuda=True, seed=0, debug=False, mode='train', save_dir='saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230418_171251', save_model=True, load_model_path=None, num_relation=34, train_adj='data/medqa_usmle/graph/train.graph.adj.pk', dev_adj='data/medqa_usmle/graph/dev.graph.adj.pk', test_adj='data/medqa_usmle/graph/test.graph.adj.pk', use_cache=True, k=5, att_head_num=2, gnn_dim=200, fc_dim=200, fc_layer_num=0, freeze_ent_emb=True, max_node_num=200, simple=False, subsample=1.0, init_range=0.02, dropouti=0.2, dropoutg=0.2, dropoutf=0.2, decoder_lr=0.001, mini_batch_size=2, eval_batch_size=2, unfreeze_epoch=0, refreeze_epoch=10000, fp16=True, drop_partial_batch=False, fill_partial_batch=False, ent_emb_paths=['data/ddb/ent_emb.npy'])
+| num_concepts: 9958 |
+train_statement_path data/medqa_usmle/statement/train.statement.jsonl
+num_choice 4
+| ori_adj_len: mu 26.49 sigma 29.73 | adj_len: 27.43 | prune_rate： 0.00 | qc_num: 4.57 | ac_num: 1.06 |
+| ori_adj_len: mu 25.20 sigma 28.18 | adj_len: 26.20 | prune_rate： 0.00 | qc_num: 4.34 | ac_num: 1.07 |
+| ori_adj_len: mu 26.09 sigma 28.17 | adj_len: 27.06 | prune_rate： 0.00 | qc_num: 4.61 | ac_num: 1.06 |
+args.num_relation 34
+parameters:
+	concept_emb.emb.weight                       	fixed	torch.Size([9958, 768])	device:cuda:0
+	concept_emb.cpt_transform.weight             	trainable	torch.Size([200, 768])	device:cuda:0
+	concept_emb.cpt_transform.bias               	trainable	torch.Size([200])	device:cuda:0
+	svec2nvec.weight                             	trainable	torch.Size([200, 768])	device:cuda:0
+	svec2nvec.bias                               	trainable	torch.Size([200])	device:cuda:0
+	gnn.emb_node_type.weight                     	trainable	torch.Size([100, 4])	device:cuda:0
+	gnn.emb_node_type.bias                       	trainable	torch.Size([100])	device:cuda:0
+	gnn.emb_score.weight                         	trainable	torch.Size([100, 100])	device:cuda:0
+	gnn.emb_score.bias                           	trainable	torch.Size([100])	device:cuda:0
+	gnn.edge_encoder.0.weight                    	trainable	torch.Size([200, 43])	device:cuda:0
+	gnn.edge_encoder.0.bias                      	trainable	torch.Size([200])	device:cuda:0
+	gnn.edge_encoder.1.weight                    	trainable	torch.Size([200])	device:cuda:0
+	gnn.edge_encoder.1.bias                      	trainable	torch.Size([200])	device:cuda:0
+	gnn.edge_encoder.3.weight                    	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.edge_encoder.3.bias                      	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.linear_key.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.0.linear_key.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.linear_msg.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.0.linear_msg.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.linear_query.weight         	trainable	torch.Size([200, 400])	device:cuda:0
+	gnn.gnn_layers.0.linear_query.bias           	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.0.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.0.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.1.weight                	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.1.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.3.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.3.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.linear_key.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.1.linear_key.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.linear_msg.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.1.linear_msg.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.linear_query.weight         	trainable	torch.Size([200, 400])	device:cuda:0
+	gnn.gnn_layers.1.linear_query.bias           	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.0.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.0.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.1.weight                	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.1.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.3.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.3.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.linear_key.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.2.linear_key.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.linear_msg.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.2.linear_msg.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.linear_query.weight         	trainable	torch.Size([200, 400])	device:cuda:0
+	gnn.gnn_layers.2.linear_query.bias           	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.0.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.0.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.1.weight                	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.1.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.3.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.3.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.linear_key.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.3.linear_key.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.linear_msg.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.3.linear_msg.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.linear_query.weight         	trainable	torch.Size([200, 400])	device:cuda:0
+	gnn.gnn_layers.3.linear_query.bias           	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.0.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.0.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.1.weight                	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.1.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.3.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.3.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.linear_key.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.4.linear_key.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.linear_msg.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.4.linear_msg.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.linear_query.weight         	trainable	torch.Size([200, 400])	device:cuda:0
+	gnn.gnn_layers.4.linear_query.bias           	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.0.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.0.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.1.weight                	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.1.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.3.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.3.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.Vh.weight                                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.Vh.bias                                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.Vx.weight                                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.Vx.bias                                  	trainable	torch.Size([200])	device:cuda:0
+	pooler.w_qs.weight                           	trainable	torch.Size([200, 768])	device:cuda:0
+	pooler.w_qs.bias                             	trainable	torch.Size([200])	device:cuda:0
+	pooler.w_ks.weight                           	trainable	torch.Size([200, 200])	device:cuda:0
+	pooler.w_ks.bias                             	trainable	torch.Size([200])	device:cuda:0
+	pooler.w_vs.weight                           	trainable	torch.Size([200, 200])	device:cuda:0
+	pooler.w_vs.bias                             	trainable	torch.Size([200])	device:cuda:0
+	fc.layers.0-Linear.weight                    	trainable	torch.Size([1, 1168])	device:cuda:0
+	fc.layers.0-Linear.bias                      	trainable	torch.Size([1])	device:cuda:0
+	total: 2690369
+
+-----------------------------------------------------------------------
+Using fp16 training

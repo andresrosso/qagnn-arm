@@ -1,0 +1,287 @@
+nlp-lab
+pid: 2133188
+conda env: haystack-py310
+screen: 2133103.train-qagnn
+
+gpu: 0
+
+Namespace(ent_emb=['ddb'], dataset='medqa_usmle', inhouse=False, inhouse_train_qids='data/medqa_usmle/inhouse_split_qids.txt', train_statements='data/medqa_usmle/statement/train.statement.jsonl', dev_statements='data/medqa_usmle/statement/dev.statement.jsonl', test_statements='data/medqa_usmle/statement/test.statement.jsonl', max_seq_len=512, encoder='cambridgeltl/SapBERT-from-PubMedBERT-fulltext', encoder_layer=-1, encoder_lr=5e-05, loss='cross_entropy', optim='radam', lr_schedule='fixed', batch_size=128, warmup_steps=150, max_grad_norm=1.0, weight_decay=0.01, n_epochs=15, max_epochs_before_stop=10, log_interval=10, cuda=True, seed=0, debug=False, mode='train', save_dir='saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845', save_model=True, load_model_path=None, num_relation=34, train_adj='data/medqa_usmle/graph/train.graph.adj.pk', dev_adj='data/medqa_usmle/graph/dev.graph.adj.pk', test_adj='data/medqa_usmle/graph/test.graph.adj.pk', use_cache=True, k=5, att_head_num=2, gnn_dim=200, fc_dim=200, fc_layer_num=0, freeze_ent_emb=True, max_node_num=200, simple=False, subsample=1.0, init_range=0.02, dropouti=0.2, dropoutg=0.2, dropoutf=0.2, decoder_lr=0.001, mini_batch_size=2, eval_batch_size=2, unfreeze_epoch=0, refreeze_epoch=10000, fp16=True, drop_partial_batch=False, fill_partial_batch=False, ent_emb_paths=['data/ddb/ent_emb.npy'])
+| num_concepts: 9958 |
+train_statement_path data/medqa_usmle/statement/train.statement.jsonl
+num_choice 4
+| ori_adj_len: mu 26.49 sigma 29.73 | adj_len: 27.43 | prune_rate： 0.00 | qc_num: 4.57 | ac_num: 1.06 |
+| ori_adj_len: mu 25.20 sigma 28.18 | adj_len: 26.20 | prune_rate： 0.00 | qc_num: 4.34 | ac_num: 1.07 |
+| ori_adj_len: mu 26.09 sigma 28.17 | adj_len: 27.06 | prune_rate： 0.00 | qc_num: 4.61 | ac_num: 1.06 |
+args.num_relation 34
+parameters:
+	concept_emb.emb.weight                       	fixed	torch.Size([9958, 768])	device:cuda:0
+	concept_emb.cpt_transform.weight             	trainable	torch.Size([200, 768])	device:cuda:0
+	concept_emb.cpt_transform.bias               	trainable	torch.Size([200])	device:cuda:0
+	svec2nvec.weight                             	trainable	torch.Size([200, 768])	device:cuda:0
+	svec2nvec.bias                               	trainable	torch.Size([200])	device:cuda:0
+	gnn.emb_node_type.weight                     	trainable	torch.Size([100, 4])	device:cuda:0
+	gnn.emb_node_type.bias                       	trainable	torch.Size([100])	device:cuda:0
+	gnn.emb_score.weight                         	trainable	torch.Size([100, 100])	device:cuda:0
+	gnn.emb_score.bias                           	trainable	torch.Size([100])	device:cuda:0
+	gnn.edge_encoder.0.weight                    	trainable	torch.Size([200, 43])	device:cuda:0
+	gnn.edge_encoder.0.bias                      	trainable	torch.Size([200])	device:cuda:0
+	gnn.edge_encoder.1.weight                    	trainable	torch.Size([200])	device:cuda:0
+	gnn.edge_encoder.1.bias                      	trainable	torch.Size([200])	device:cuda:0
+	gnn.edge_encoder.3.weight                    	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.edge_encoder.3.bias                      	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.linear_key.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.0.linear_key.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.linear_msg.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.0.linear_msg.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.linear_query.weight         	trainable	torch.Size([200, 400])	device:cuda:0
+	gnn.gnn_layers.0.linear_query.bias           	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.0.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.0.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.1.weight                	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.1.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.3.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.0.mlp.3.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.linear_key.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.1.linear_key.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.linear_msg.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.1.linear_msg.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.linear_query.weight         	trainable	torch.Size([200, 400])	device:cuda:0
+	gnn.gnn_layers.1.linear_query.bias           	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.0.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.0.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.1.weight                	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.1.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.3.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.1.mlp.3.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.linear_key.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.2.linear_key.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.linear_msg.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.2.linear_msg.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.linear_query.weight         	trainable	torch.Size([200, 400])	device:cuda:0
+	gnn.gnn_layers.2.linear_query.bias           	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.0.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.0.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.1.weight                	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.1.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.3.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.2.mlp.3.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.linear_key.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.3.linear_key.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.linear_msg.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.3.linear_msg.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.linear_query.weight         	trainable	torch.Size([200, 400])	device:cuda:0
+	gnn.gnn_layers.3.linear_query.bias           	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.0.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.0.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.1.weight                	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.1.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.3.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.3.mlp.3.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.linear_key.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.4.linear_key.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.linear_msg.weight           	trainable	torch.Size([200, 600])	device:cuda:0
+	gnn.gnn_layers.4.linear_msg.bias             	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.linear_query.weight         	trainable	torch.Size([200, 400])	device:cuda:0
+	gnn.gnn_layers.4.linear_query.bias           	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.0.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.0.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.1.weight                	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.1.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.3.weight                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.gnn_layers.4.mlp.3.bias                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.Vh.weight                                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.Vh.bias                                  	trainable	torch.Size([200])	device:cuda:0
+	gnn.Vx.weight                                	trainable	torch.Size([200, 200])	device:cuda:0
+	gnn.Vx.bias                                  	trainable	torch.Size([200])	device:cuda:0
+	pooler.w_qs.weight                           	trainable	torch.Size([200, 768])	device:cuda:0
+	pooler.w_qs.bias                             	trainable	torch.Size([200])	device:cuda:0
+	pooler.w_ks.weight                           	trainable	torch.Size([200, 200])	device:cuda:0
+	pooler.w_ks.bias                             	trainable	torch.Size([200])	device:cuda:0
+	pooler.w_vs.weight                           	trainable	torch.Size([200, 200])	device:cuda:0
+	pooler.w_vs.bias                             	trainable	torch.Size([200])	device:cuda:0
+	fc.layers.0-Linear.weight                    	trainable	torch.Size([1, 1168])	device:cuda:0
+	fc.layers.0-Linear.bias                      	trainable	torch.Size([1])	device:cuda:0
+	total: 2690369
+
+-----------------------------------------------------------------------
+Using fp16 training
+| step     9 |  lr: 0.0000500 | loss  1.3918 | ms/batch 166238.50 |
+| step    19 |  lr: 0.0000500 | loss  1.3948 | ms/batch 166257.70 |
+| step    29 |  lr: 0.0000500 | loss  1.3947 | ms/batch 166267.75 |
+| step    39 |  lr: 0.0000500 | loss  1.3997 | ms/batch 166173.66 |
+| step    49 |  lr: 0.0000500 | loss  1.4008 | ms/batch 166092.68 |
+| step    59 |  lr: 0.0000500 | loss  1.3913 | ms/batch 166177.63 |
+| step    69 |  lr: 0.0000500 | loss  1.3917 | ms/batch 166263.43 |
+| step    79 |  lr: 0.0000500 | loss  1.3906 | ms/batch 158200.80 |
+-----------------------------------------------------------------------
+| epoch   0 | step    80 | dev_acc  0.2752 | test_acc  0.2608 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.0
+| step    89 |  lr: 0.0000500 | loss  1.3956 | ms/batch 166338.99 |
+| step    99 |  lr: 0.0000500 | loss  1.3904 | ms/batch 166271.33 |
+| step   109 |  lr: 0.0000500 | loss  1.3880 | ms/batch 166265.05 |
+| step   119 |  lr: 0.0000500 | loss  1.3910 | ms/batch 166203.46 |
+| step   129 |  lr: 0.0000500 | loss  1.3867 | ms/batch 166147.19 |
+| step   139 |  lr: 0.0000500 | loss  1.3881 | ms/batch 166265.93 |
+| step   149 |  lr: 0.0000500 | loss  1.3876 | ms/batch 166221.22 |
+| step   159 |  lr: 0.0000500 | loss  1.3831 | ms/batch 158208.73 |
+-----------------------------------------------------------------------
+| epoch   1 | step   160 | dev_acc  0.2854 | test_acc  0.2930 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.1
+| step   169 |  lr: 0.0000500 | loss  1.3776 | ms/batch 166322.31 |
+| step   179 |  lr: 0.0000500 | loss  1.3701 | ms/batch 166365.51 |
+| step   189 |  lr: 0.0000500 | loss  1.3711 | ms/batch 166860.17 |
+| step   199 |  lr: 0.0000500 | loss  1.3655 | ms/batch 166494.33 |
+| step   209 |  lr: 0.0000500 | loss  1.3751 | ms/batch 166367.63 |
+| step   219 |  lr: 0.0000500 | loss  1.3784 | ms/batch 166549.78 |
+| step   229 |  lr: 0.0000500 | loss  1.3752 | ms/batch 166444.71 |
+| step   239 |  lr: 0.0000500 | loss  1.3665 | ms/batch 158178.77 |
+-----------------------------------------------------------------------
+| epoch   2 | step   240 | dev_acc  0.3113 | test_acc  0.3142 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.2
+| step   249 |  lr: 0.0000500 | loss  1.3337 | ms/batch 166328.58 |
+| step   259 |  lr: 0.0000500 | loss  1.3310 | ms/batch 166310.89 |
+| step   269 |  lr: 0.0000500 | loss  1.3195 | ms/batch 166342.99 |
+| step   279 |  lr: 0.0000500 | loss  1.3251 | ms/batch 166351.87 |
+| step   289 |  lr: 0.0000500 | loss  1.3216 | ms/batch 166364.55 |
+| step   299 |  lr: 0.0000500 | loss  1.3288 | ms/batch 166388.26 |
+| step   309 |  lr: 0.0000500 | loss  1.3383 | ms/batch 166416.09 |
+| step   319 |  lr: 0.0000500 | loss  1.3254 | ms/batch 158879.09 |
+-----------------------------------------------------------------------
+| epoch   3 | step   320 | dev_acc  0.3388 | test_acc  0.3519 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.3
+| step   329 |  lr: 0.0000500 | loss  1.2723 | ms/batch 166284.43 |
+| step   339 |  lr: 0.0000500 | loss  1.2372 | ms/batch 166359.05 |
+| step   349 |  lr: 0.0000500 | loss  1.2530 | ms/batch 166267.43 |
+| step   359 |  lr: 0.0000500 | loss  1.2038 | ms/batch 166287.32 |
+| step   369 |  lr: 0.0000500 | loss  1.2151 | ms/batch 166154.25 |
+| step   379 |  lr: 0.0000500 | loss  1.2672 | ms/batch 166262.05 |
+| step   389 |  lr: 0.0000500 | loss  1.2365 | ms/batch 166200.59 |
+| step   399 |  lr: 0.0000500 | loss  1.2371 | ms/batch 158183.00 |
+-----------------------------------------------------------------------
+| epoch   4 | step   400 | dev_acc  0.3428 | test_acc  0.3645 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.4
+| step   409 |  lr: 0.0000500 | loss  1.1517 | ms/batch 166286.95 |
+| step   419 |  lr: 0.0000500 | loss  1.1285 | ms/batch 166239.55 |
+| step   429 |  lr: 0.0000500 | loss  1.1368 | ms/batch 166177.66 |
+| step   439 |  lr: 0.0000500 | loss  1.1075 | ms/batch 166264.44 |
+| step   449 |  lr: 0.0000500 | loss  1.1430 | ms/batch 166247.08 |
+| step   459 |  lr: 0.0000500 | loss  1.1422 | ms/batch 166156.71 |
+| step   469 |  lr: 0.0000500 | loss  1.1210 | ms/batch 166150.43 |
+| step   479 |  lr: 0.0000500 | loss  1.1276 | ms/batch 158062.03 |
+-----------------------------------------------------------------------
+| epoch   5 | step   480 | dev_acc  0.3491 | test_acc  0.3496 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.5
+| step   489 |  lr: 0.0000500 | loss  1.0172 | ms/batch 166237.05 |
+| step   499 |  lr: 0.0000500 | loss  1.0159 | ms/batch 166170.60 |
+| step   509 |  lr: 0.0000500 | loss  1.0066 | ms/batch 166339.39 |
+| step   519 |  lr: 0.0000500 | loss  1.0095 | ms/batch 166238.20 |
+| step   529 |  lr: 0.0000500 | loss  1.0336 | ms/batch 166116.17 |
+| step   539 |  lr: 0.0000500 | loss  1.0253 | ms/batch 166250.34 |
+| step   549 |  lr: 0.0000500 | loss  1.0364 | ms/batch 166298.70 |
+| step   559 |  lr: 0.0000500 | loss  1.0531 | ms/batch 158158.34 |
+-----------------------------------------------------------------------
+| epoch   6 | step   560 | dev_acc  0.3577 | test_acc  0.3739 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.6
+| step   569 |  lr: 0.0000500 | loss  0.8657 | ms/batch 166231.14 |
+| step   579 |  lr: 0.0000500 | loss  0.8541 | ms/batch 166371.59 |
+| step   589 |  lr: 0.0000500 | loss  0.8611 | ms/batch 166247.74 |
+| step   599 |  lr: 0.0000500 | loss  0.8755 | ms/batch 166223.60 |
+| step   609 |  lr: 0.0000500 | loss  0.9091 | ms/batch 166151.44 |
+| step   619 |  lr: 0.0000500 | loss  0.9090 | ms/batch 166270.52 |
+| step   629 |  lr: 0.0000500 | loss  0.8859 | ms/batch 166282.87 |
+| step   639 |  lr: 0.0000500 | loss  0.9292 | ms/batch 158167.48 |
+-----------------------------------------------------------------------
+| epoch   7 | step   640 | dev_acc  0.3750 | test_acc  0.3723 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.7
+| step   649 |  lr: 0.0000500 | loss  0.7453 | ms/batch 166245.53 |
+| step   659 |  lr: 0.0000500 | loss  0.7306 | ms/batch 166212.12 |
+| step   669 |  lr: 0.0000500 | loss  0.7397 | ms/batch 166264.44 |
+| step   679 |  lr: 0.0000500 | loss  0.7289 | ms/batch 166501.82 |
+| step   689 |  lr: 0.0000500 | loss  0.7820 | ms/batch 166329.80 |
+| step   699 |  lr: 0.0000500 | loss  0.7635 | ms/batch 166731.37 |
+| step   709 |  lr: 0.0000500 | loss  0.7661 | ms/batch 166471.39 |
+| step   719 |  lr: 0.0000500 | loss  0.7590 | ms/batch 158324.23 |
+-----------------------------------------------------------------------
+| epoch   8 | step   720 | dev_acc  0.3758 | test_acc  0.3708 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.8
+| step   729 |  lr: 0.0000500 | loss  0.5823 | ms/batch 166531.91 |
+| step   739 |  lr: 0.0000500 | loss  0.6085 | ms/batch 166273.14 |
+| step   749 |  lr: 0.0000500 | loss  0.5984 | ms/batch 166246.08 |
+| step   759 |  lr: 0.0000500 | loss  0.5548 | ms/batch 166498.96 |
+| step   769 |  lr: 0.0000500 | loss  0.6523 | ms/batch 166340.25 |
+| step   779 |  lr: 0.0000500 | loss  0.6220 | ms/batch 166504.52 |
+| step   789 |  lr: 0.0000500 | loss  0.6063 | ms/batch 166392.13 |
+| step   799 |  lr: 0.0000500 | loss  0.6513 | ms/batch 158686.64 |
+-----------------------------------------------------------------------
+| epoch   9 | step   800 | dev_acc  0.3640 | test_acc  0.3661 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.9
+| step   809 |  lr: 0.0000500 | loss  0.4716 | ms/batch 166261.25 |
+| step   819 |  lr: 0.0000500 | loss  0.4606 | ms/batch 166218.28 |
+| step   829 |  lr: 0.0000500 | loss  0.4684 | ms/batch 166195.14 |
+| step   839 |  lr: 0.0000500 | loss  0.5086 | ms/batch 166260.21 |
+| step   849 |  lr: 0.0000500 | loss  0.4764 | ms/batch 166046.72 |
+| step   859 |  lr: 0.0000500 | loss  0.5106 | ms/batch 166131.95 |
+| step   869 |  lr: 0.0000500 | loss  0.5210 | ms/batch 165958.21 |
+| step   879 |  lr: 0.0000500 | loss  0.4883 | ms/batch 158166.83 |
+-----------------------------------------------------------------------
+| epoch  10 | step   880 | dev_acc  0.3640 | test_acc  0.3881 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.10
+| step   889 |  lr: 0.0000500 | loss  0.3722 | ms/batch 166109.92 |
+| step   899 |  lr: 0.0000500 | loss  0.3891 | ms/batch 166100.71 |
+| step   909 |  lr: 0.0000500 | loss  0.3782 | ms/batch 166152.81 |
+| step   919 |  lr: 0.0000500 | loss  0.3796 | ms/batch 166171.24 |
+| step   929 |  lr: 0.0000500 | loss  0.4095 | ms/batch 166029.97 |
+| step   939 |  lr: 0.0000500 | loss  0.3803 | ms/batch 166053.32 |
+| step   949 |  lr: 0.0000500 | loss  0.4223 | ms/batch 166018.09 |
+| step   959 |  lr: 0.0000500 | loss  0.4095 | ms/batch 158054.32 |
+-----------------------------------------------------------------------
+| epoch  11 | step   960 | dev_acc  0.3569 | test_acc  0.3928 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.11
+| step   969 |  lr: 0.0000500 | loss  0.2952 | ms/batch 166090.86 |
+| step   979 |  lr: 0.0000500 | loss  0.2836 | ms/batch 166047.29 |
+| step   989 |  lr: 0.0000500 | loss  0.3155 | ms/batch 166019.66 |
+| step   999 |  lr: 0.0000500 | loss  0.3055 | ms/batch 166158.73 |
+| step  1009 |  lr: 0.0000500 | loss  0.2976 | ms/batch 166154.25 |
+| step  1019 |  lr: 0.0000500 | loss  0.3310 | ms/batch 166140.50 |
+| step  1029 |  lr: 0.0000500 | loss  0.3193 | ms/batch 166409.70 |
+| step  1039 |  lr: 0.0000500 | loss  0.3680 | ms/batch 158028.26 |
+-----------------------------------------------------------------------
+| epoch  12 | step  1040 | dev_acc  0.3593 | test_acc  0.3920 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.12
+| step  1049 |  lr: 0.0000500 | loss  0.2392 | ms/batch 166247.96 |
+| step  1059 |  lr: 0.0000500 | loss  0.2415 | ms/batch 166038.26 |
+| step  1069 |  lr: 0.0000500 | loss  0.2637 | ms/batch 166059.29 |
+| step  1079 |  lr: 0.0000500 | loss  0.2684 | ms/batch 166180.22 |
+| step  1089 |  lr: 0.0000500 | loss  0.2614 | ms/batch 166153.63 |
+| step  1099 |  lr: 0.0000500 | loss  0.2332 | ms/batch 166186.04 |
+| step  1109 |  lr: 0.0000500 | loss  0.2825 | ms/batch 166175.04 |
+| step  1119 |  lr: 0.0000500 | loss  0.2441 | ms/batch 158026.46 |
+-----------------------------------------------------------------------
+| epoch  13 | step  1120 | dev_acc  0.3813 | test_acc  0.3896 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.13
+| step  1129 |  lr: 0.0000500 | loss  0.1878 | ms/batch 166137.60 |
+| step  1139 |  lr: 0.0000500 | loss  0.1908 | ms/batch 166127.77 |
+| step  1149 |  lr: 0.0000500 | loss  0.1732 | ms/batch 166361.07 |
+| step  1159 |  lr: 0.0000500 | loss  0.2221 | ms/batch 166186.53 |
+| step  1169 |  lr: 0.0000500 | loss  0.1922 | ms/batch 166275.55 |
+| step  1179 |  lr: 0.0000500 | loss  0.2245 | ms/batch 166336.79 |
+| step  1189 |  lr: 0.0000500 | loss  0.2196 | ms/batch 166586.54 |
+| step  1199 |  lr: 0.0000500 | loss  0.2097 | ms/batch 158437.60 |
+-----------------------------------------------------------------------
+| epoch  14 | step  1200 | dev_acc  0.3719 | test_acc  0.3747 |
+-----------------------------------------------------------------------
+model saved to saved_models/medqa_usmle/enc-sapbert__k5__gnndim200__bs128__seed0__20230422_202845/model.pt.14
